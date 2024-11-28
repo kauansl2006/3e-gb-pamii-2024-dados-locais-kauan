@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gconf": "git config --local user.name \"Kauan Santos Lima\" && git config --local user.email \"kauansantosl2006@gmail.com\"",
+    
+    "ion-i": "npm i -g @ionic/cli@7 && ionic info",
+
+    "all": "npm run gconf && npm run ion-i"
   },
   "keywords": [],
   "author": "",
