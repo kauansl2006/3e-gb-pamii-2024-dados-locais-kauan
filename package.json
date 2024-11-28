@@ -1,0 +1,16 @@
+{
+  "name": "3e-gb-pamii-2024-dados-locais-kauan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gconf": "git config --local user.name \"Kauan Santos Lima\" && git config --local user.email \"kauansantosl2006@gmail.com\"",
+    
+    "ion-i": "npm i -g @ionic/cli@7 && ionic info",
+
+    "all": "npm run gconf && npm run ion-i"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
