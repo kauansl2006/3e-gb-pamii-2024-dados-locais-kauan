@@ -25,6 +25,7 @@ import {
   IonRadio
 } from '@ionic/angular/standalone';
 import { ComponenteDocente } from '../models/componente-docente';
+import { ArmazenamentoLocalService } from '../services/armazenamento-local/armazenamento-local.service';
 
 @Component({
   selector: 'app-cadastra-tarefas',
@@ -88,7 +89,9 @@ export class CadastraTarefasPage implements OnInit {
     individual: [ true ]
   });
 
-  constructor() { }
+  constructor(
+    private readonly armLocalServ: ArmazenamentoLocalService
+  ) { }
 
   ngOnInit() {
   }
@@ -97,6 +100,8 @@ export class CadastraTarefasPage implements OnInit {
     const tarefa: any = this.FrmTarefa.controls;
 
     console.log("Dados que serão cadastrados", tarefa);
+
+    console.log(this.armLocalServ.getAll());
   }
 
   clear() {
