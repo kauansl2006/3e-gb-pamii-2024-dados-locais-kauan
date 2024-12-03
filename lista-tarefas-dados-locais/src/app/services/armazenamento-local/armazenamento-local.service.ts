@@ -33,6 +33,7 @@ export class ArmazenamentoLocalService {
       data_aviso: data.data_aviso.value,
       data_entrega: data.data_entrega.value,
       individual: data.individual.value,
+      concluida: false
     }
   }
 
@@ -58,4 +59,24 @@ export class ArmazenamentoLocalService {
 
     return tarefas;
   }
+
+  delete(tarefaId: number) {
+    if(this.STORAGE) {
+      this.STORAGE.removeItem(tarefaId.toString());
+    }
+  }
+
+  done(tarefaId: number) {
+    if(this.STORAGE) {
+      const tarefa = this.STORAGE.getItem(tarefaId.toString());
+
+      if(tarefa) {
+        const tarefaObj: Tarefa = JSON.parse(tarefa);
+        tarefaObj.concluida = true;
+
+        this.STORAGE.setItem(tarefaId.toString(), JSON.stringify(tarefaObj));
+      }
+    }
+  }
+
 }

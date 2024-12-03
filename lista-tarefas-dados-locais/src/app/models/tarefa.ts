@@ -8,4 +8,5 @@ export interface Tarefa {
   data_aviso: Date;
   data_entrega: Date;
   individual: boolean;
+  concluida: boolean;
 }
