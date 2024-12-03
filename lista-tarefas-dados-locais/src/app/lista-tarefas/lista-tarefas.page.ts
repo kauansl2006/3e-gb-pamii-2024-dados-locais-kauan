@@ -13,8 +13,16 @@ import {
   IonItemSliding,
   IonItemOptions,
   IonItemOption,
-  IonLabel
+  IonLabel,
+  IonIcon
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { 
+  trash,
+  create,
+  checkmark,
+  eye
+} from 'ionicons/icons';
 import { Tarefa } from '../models/tarefa';
 import { ArmazenamentoLocalService } from '../services/armazenamento-local/armazenamento-local.service';
 
@@ -35,7 +43,8 @@ import { ArmazenamentoLocalService } from '../services/armazenamento-local/armaz
     IonItemSliding,
     IonItemOptions,
     IonItemOption,
-    IonLabel
+    IonLabel,
+    IonIcon
   ]
 })
 export class ListaTarefasPage implements OnInit {
@@ -48,7 +57,13 @@ export class ListaTarefasPage implements OnInit {
 
   ngOnInit() {
     this.tarefas = this.armLocalServ.getAll();
-    console.log(this.tarefas);
+    
+    addIcons({
+      trash,
+      create,
+      checkmark,
+      eye
+    });
   }
 
 }
