@@ -101,7 +101,7 @@ export class CadastraTarefasPage implements OnInit {
 
     console.log("Dados que serão cadastrados", tarefa);
 
-    console.log(this.armLocalServ.getAll());
+    console.log(this.armLocalServ.save(tarefa));
   }
 
   clear() {

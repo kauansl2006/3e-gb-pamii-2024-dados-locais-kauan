@@ -81,21 +81,20 @@
         </ion-radio-group>
       </ion-item>
     </ion-list>
+
+    <ion-button 
+      color="primary"
+      expand="full"
+      type="submit"
+    >
+      Salvar
+    </ion-button>
+    <ion-button 
+      color="danger"
+      expand="full"
+      (click)="clear()"
+    >
+      Cancelar
+    </ion-button>
   </form>
-
-  <ion-button 
-    color="primary"
-    expand="full"
-    type="submit"
-  >
-    Salvar
-  </ion-button>
-  <ion-button 
-    color="danger"
-    expand="full"
-    (click)="clear()"
-  >
-    Cancelar
-  </ion-button>
-
 </ion-content>
