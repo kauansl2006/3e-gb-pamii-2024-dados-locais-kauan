@@ -56,14 +56,28 @@ export class ListaTarefasPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.tarefas = this.armLocalServ.getAll();
-    
+    this.loadTarefas();
+
     addIcons({
       trash,
       create,
       checkmark,
       eye
     });
+  }
+
+  loadTarefas() {
+    this.tarefas = this.armLocalServ.getAll();
+  }
+
+  deleteTarefa(id: number) {
+    this.armLocalServ.delete(id);
+    this.loadTarefas();
+  }
+  
+  markAsDone(id: number) {
+    this.armLocalServ.done(id);
+    this.loadTarefas();
   }
 
 }
