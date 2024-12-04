@@ -14,7 +14,8 @@ import {
   IonItemOptions,
   IonItemOption,
   IonLabel,
-  IonIcon
+  IonIcon,
+  AlertController
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { 
@@ -52,7 +53,8 @@ export class ListaTarefasPage implements OnInit {
   tarefas: Tarefa[] = [];
 
   constructor(
-    private readonly armLocalServ: ArmazenamentoLocalService
+    private readonly armLocalServ: ArmazenamentoLocalService,
+    private readonly alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -69,6 +71,26 @@ export class ListaTarefasPage implements OnInit {
   loadTarefas() {
     this.tarefas = this.armLocalServ.getAll();
   }
+
+  async openDeleteAlert(id: number) {
+    const alert = await this.alertCtrl.create({
+      header: 'Atenção!',
+      message: 'Você está prestes a excluir essa tarefa, essa ação é irreversível, deseja continuar?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Excluir',
+          handler: () => this.deleteTarefa(id)
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 
   deleteTarefa(id: number) {
     this.armLocalServ.delete(id);
