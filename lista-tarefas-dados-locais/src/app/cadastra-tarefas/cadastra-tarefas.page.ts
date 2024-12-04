@@ -3,7 +3,10 @@ import {
   OnInit
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { 
+  ReactiveFormsModule,
+  FormBuilder
+} from '@angular/forms';
 import { 
   IonContent,
   IonHeader, 
@@ -21,11 +24,8 @@ import {
   IonRadioGroup,
   IonRadio
 } from '@ionic/angular/standalone';
-
-interface ComponenteDocente {
-  componente: string;
-  docente: string;
-}
+import { ComponenteDocente } from '../models/componente-docente';
+import { ArmazenamentoLocalService } from '../services/armazenamento-local/armazenamento-local.service';
 
 @Component({
   selector: 'app-cadastra-tarefas',
@@ -80,9 +80,33 @@ export class CadastraTarefasPage implements OnInit {
     }
   ]
 
-  constructor() { }
+  FrmTarefa = new FormBuilder().group({
+    titulo: [''],
+    componente: [''],
+    descricao: [''],
+    data_aviso: [''],
+    data_entrega: [''],
+    individual: [ true ]
+  });
+
+  constructor(
+    private readonly armLocalServ: ArmazenamentoLocalService
+  ) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    const tarefa: any = this.FrmTarefa.controls;
+
+    console.log("Dados que serão cadastrados", tarefa);
+
+    this.armLocalServ.save(tarefa)
+  }
+
+  clear() {
+    this.FrmTarefa.reset();
+    this.FrmTarefa.controls.individual.setValue(true);
   }
 
 }
